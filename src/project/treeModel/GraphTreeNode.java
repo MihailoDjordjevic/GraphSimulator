@@ -1,5 +1,6 @@
 package project.treeModel;
 
+import observer.NotificationType;
 import project.graphModel.GraphModel;
 import project.graphModel.NodeModel;
 
@@ -11,6 +12,7 @@ public class GraphTreeNode extends AbstractNode {
         super(allowsChildren, model);
         ((GraphModel) model).setGraphNode(this);
         setChildren();
+        ((GraphModel) model).addSubscriber(this);
     }
 
     @Override
@@ -35,5 +37,10 @@ public class GraphTreeNode extends AbstractNode {
     @Override
     public String toString() {
         return getName();
+    }
+
+    @Override
+    public void update(Object notification, NotificationType notificationType) {
+
     }
 }

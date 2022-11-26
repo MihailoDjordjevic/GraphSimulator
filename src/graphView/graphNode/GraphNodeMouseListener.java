@@ -1,6 +1,7 @@
 package graphView.graphNode;
 
 import graphCalculations.PathFinder;
+import org.w3c.dom.Node;
 import project.graphModel.EdgeModel;
 import project.graphModel.NodeModel;
 import graphView.graphEdge.EdgeView;
@@ -28,6 +29,17 @@ public class GraphNodeMouseListener implements MouseListener {
                 GraphPane.deleteNode(e);
             } break;
             case SELECT:{
+
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        selectST((NodeView) e.getSource(), (GraphPane) ((NodeView) e.getSource()).getParent());
+                    }
+                });
+
+                t.start();
+
+
                 if (e.getClickCount() == 1 && e.getButton() == 1) return;
             } break;
             case TWOWAYEDGE:{

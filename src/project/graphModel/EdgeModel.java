@@ -1,9 +1,17 @@
 package project.graphModel;
 
 import graphView.graphEdge.EdgeView;
+import observer.IPublisher;
+import observer.ISubscriber;
+import observer.NotificationType;
 import project.treeModel.EdgeTreeLeaf;
 
-public class EdgeModel {
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class EdgeModel implements IPublisher {
+
+    private ArrayList<ISubscriber> subscribers;
 
     private EdgeView edgeViewPane;
     private EdgeTreeLeaf sourceEdgeLeaf;
@@ -19,6 +27,7 @@ public class EdgeModel {
         this.destinationNode = destinationNode;
         this.capacity = capacity;
         this.flow = flow;
+        subscribers = new ArrayList<>();
     }
 
     public NodeModel getSourceNode() {
@@ -75,5 +84,21 @@ public class EdgeModel {
 
     public void setDestinationEdgeLeaf(EdgeTreeLeaf destinationEdgeLeaf) {
         DestinationEdgeLeaf = destinationEdgeLeaf;
+    }
+
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        subscribers.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifySubscribers(Object notification, NotificationType notificationType) throws IOException {
+        for(ISubscriber subscriber : subscribers)
+            subscriber.update(notification, notificationType);
     }
 }

@@ -1,11 +1,17 @@
 package project.graphModel;
 
+import observer.IPublisher;
+import observer.ISubscriber;
+import observer.NotificationType;
 import project.Project;
 import project.treeModel.GraphTreeNode;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class GraphModel {
+public class GraphModel implements IPublisher {
+
+    private ArrayList<ISubscriber> subscribers;
 
     private int nodeNumberGenerator = 0;
 
@@ -26,6 +32,7 @@ public class GraphModel {
     private void init(){
         Nodes = new ArrayList<>(10);
         Edges = new ArrayList<>(20);
+        subscribers = new ArrayList<>();
     }
 
     public ArrayList<NodeModel> getNodes() {
@@ -58,5 +65,21 @@ public class GraphModel {
 
     public void setGraphNode(GraphTreeNode graphNode) {
         this.graphNode = graphNode;
+    }
+
+    @Override
+    public void addSubscriber(ISubscriber sub) {
+        subscribers.add(sub);
+    }
+
+    @Override
+    public void removeSubscriber(ISubscriber sub) {
+        subscribers.remove(sub);
+    }
+
+    @Override
+    public void notifySubscribers(Object notification, NotificationType notificationType) throws IOException {
+        for(ISubscriber subscriber : subscribers)
+            subscriber.update(notification, notificationType);
     }
 }

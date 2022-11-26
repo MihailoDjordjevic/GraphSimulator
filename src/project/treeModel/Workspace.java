@@ -1,5 +1,7 @@
 package project.treeModel;
 
+import observer.NotificationType;
+
 public class Workspace extends AbstractNode{
 
     private static Workspace workspace = null;
@@ -18,5 +20,10 @@ public class Workspace extends AbstractNode{
     @Override
     public String toString() {
         return "Workspace";
+    }
+
+    @Override
+    public void update(Object notification, NotificationType notificationType) {
+
     }
 }

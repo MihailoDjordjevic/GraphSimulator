@@ -1,13 +1,16 @@
 package graphView.graphNode;
 
+import observer.ISubscriber;
+import observer.NotificationType;
 import project.graphModel.NodeModel;
 import graphView.graphEdge.EdgeView;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class NodeView extends JPanel {
+public class NodeView extends JPanel implements ISubscriber {
 
     private JLabel nodeNumberLabel;
     private int x;
@@ -74,5 +77,10 @@ public class NodeView extends JPanel {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public void update(Object notification, NotificationType notificationType) {
+
     }
 }

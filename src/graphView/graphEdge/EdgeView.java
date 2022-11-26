@@ -1,5 +1,7 @@
 package graphView.graphEdge;
 
+import observer.ISubscriber;
+import observer.NotificationType;
 import project.graphModel.EdgeModel;
 import graphView.graphNode.GraohNodeMouseMotionListener;
 import graphView.graphNode.NodeView;
@@ -7,7 +9,7 @@ import graphView.graphNode.NodeView;
 import javax.swing.*;
 import java.awt.*;
 
-public class EdgeView extends JPanel {
+public class EdgeView extends JPanel implements ISubscriber {
 
     private EdgeModel edgeModel;
     private int x1, y1, x2, y2;
@@ -154,5 +156,10 @@ public class EdgeView extends JPanel {
     }
     public void setPair(EdgeView pair) {
         this.pair = pair;
+    }
+
+    @Override
+    public void update(Object notification, NotificationType notificationType) {
+
     }
 }

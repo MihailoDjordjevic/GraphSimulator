@@ -1,5 +1,7 @@
 package graphView.graphPane;
 
+import observer.ISubscriber;
+import observer.NotificationType;
 import project.graphModel.EdgeModel;
 import project.graphModel.GraphModel;
 import project.graphModel.NodeModel;
@@ -18,7 +20,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-public class GraphPane extends JPanel {
+public class GraphPane extends JPanel implements ISubscriber {
 
     private static NodeView sourceNode = null;
 
@@ -119,7 +121,7 @@ public class GraphPane extends JPanel {
 
     public static NodeView addNode(GraphPane currentGraphPane, int x, int y){
 
-        NodeView newNode = new NodeView(new NodeModel(currentGraphPane.getGraph()), x, y);
+        NodeView newNode = new NodeView(new NodeModel(currentGraphPane.getGraph()), x, y);  newNode.getNodeModel().setNodePane(newNode);
         currentGraphPane.add(newNode);
         currentGraphPane.getNodes().add(newNode);
         currentGraphPane.getGraph().getNodes().add(newNode.getNodeModel());
@@ -264,5 +266,10 @@ public class GraphPane extends JPanel {
 
     public static void setSourceNode(NodeView sourceNode) {
         GraphPane.sourceNode = sourceNode;
+    }
+
+    @Override
+    public void update(Object notification, NotificationType notificationType) {
+
     }
 }

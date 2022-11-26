@@ -1,5 +1,6 @@
 package project.treeModel;
 
+import observer.NotificationType;
 import project.graphModel.EdgeModel;
 import project.graphModel.NodeModel;
 
@@ -30,5 +31,10 @@ public class NodeTreeNode extends AbstractNode {
     @Override
     public String toString() {
         return "Node " + ((NodeModel) getModel()).getNodeNumber();
+    }
+
+    @Override
+    public void update(Object notification, NotificationType notificationType) {
+
     }
 }

@@ -8,6 +8,8 @@ import graphView.graphNode.NodeView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class EdgeView extends JPanel implements ISubscriber {
 
@@ -18,7 +20,7 @@ public class EdgeView extends JPanel implements ISubscriber {
     private boolean hasPair = false;
     private EdgeView pair;
 
-    private JLabel flowInfo;
+    private JTextField flowInfo;
 
     public EdgeView(EdgeModel edgeModel, int x1, int y1, int x2, int y2) {
         this.edgeModel = edgeModel;
@@ -34,16 +36,37 @@ public class EdgeView extends JPanel implements ISubscriber {
     private void init(){
 
         setLayout(null);
-        setSize(Math.max(Math.abs(x1 - x2) + 1, 80), Math.max(Math.abs(y1 - y2), 14));
+        setSize(Math.max(Math.abs(x1 - x2) + 1, 80), Math.max(Math.abs(y1 - y2), 25));
         setLocation(Math.min(x1, x2), Math.min(y1, y2));
         setOpaque(false);
 
-        flowInfo = new JLabel(edgeModel.getFlow() + "/" + edgeModel.getCapacity());
-        flowInfo.setSize(80, 13);
+        flowInfo = new JTextField(edgeModel.getFlow() + "/" + edgeModel.getCapacity());
+        flowInfo.setSize(80, 25);
         flowInfo.setLocation(getSize().width/2 - 40, getSize().height/2 - 6);
         flowInfo.setOpaque(false);
         flowInfo.addMouseListener(new EdgeMouseListener());
         flowInfo.addMouseMotionListener(new GraohNodeMouseMotionListener());
+
+        flowInfo.setEditable(true);
+        flowInfo.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                try {
+                    edgeModel.setFlow(Integer.parseInt(flowInfo.getText()));
+                } catch (NumberFormatException ex) {
+                }
+            }
+        });
 
         add(flowInfo);
     }

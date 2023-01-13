@@ -4,6 +4,8 @@ import observer.NotificationType;
 import project.graphModel.GraphModel;
 import project.graphModel.NodeModel;
 
+import javax.swing.tree.MutableTreeNode;
+
 public class GraphTreeNode extends AbstractNode {
 
     private String name;
@@ -41,6 +43,8 @@ public class GraphTreeNode extends AbstractNode {
 
     @Override
     public void update(Object notification, NotificationType notificationType) {
-
+        switch (notificationType){
+            case ADD: add((MutableTreeNode) notification);
+        }
     }
 }

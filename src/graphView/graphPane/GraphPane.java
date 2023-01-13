@@ -270,6 +270,8 @@ public class GraphPane extends JPanel implements ISubscriber {
 
     @Override
     public void update(Object notification, NotificationType notificationType) {
-
+        switch (notificationType){
+            case ADD:
+        }
     }
 }

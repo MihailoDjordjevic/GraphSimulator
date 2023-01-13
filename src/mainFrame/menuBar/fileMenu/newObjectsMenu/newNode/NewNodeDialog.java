@@ -64,9 +64,9 @@ public class NewNodeDialog extends JDialog {
 
         //checkBoxes init
         initCheckBox();
-        JScrollPane checBoxScrollPane = new JScrollPane(checkBoxPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        checBoxScrollPane.setPreferredSize(new Dimension(150, 250));
-        rootPanel.add(checBoxScrollPane, BorderLayout.CENTER);
+        JScrollPane checkBoxScrollPane = new JScrollPane(checkBoxPanel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        checkBoxScrollPane.setPreferredSize(new Dimension(150, 250));
+        rootPanel.add(checkBoxScrollPane, BorderLayout.CENTER);
 
         //button panel init
         JPanel buttonHolder = new JPanel();

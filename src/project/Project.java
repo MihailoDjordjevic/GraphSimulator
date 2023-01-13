@@ -47,7 +47,7 @@ public class Project implements IPublisher {
     }
 
     @Override
-    public void notifySubscribers(Object notification, NotificationType notificationType) throws IOException {
+    public void notifySubscribers(Object notification, NotificationType notificationType) {
         for(ISubscriber subscriber : subscribers)
             subscriber.update(notification, notificationType);
     }

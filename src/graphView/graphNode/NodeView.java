@@ -7,12 +7,14 @@ import graphView.graphEdge.EdgeView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 public class NodeView extends JPanel implements ISubscriber {
 
-    private JLabel nodeNumberLabel;
+    private JTextField nodeNumberLabel;
     private int x;
     private int y;
     private NodeModel nodeModel;
@@ -34,8 +36,24 @@ public class NodeView extends JPanel implements ISubscriber {
         setBackground(Color.PINK);
         setOpaque(true);
 
-        nodeNumberLabel = new JLabel(String.valueOf(nodeModel.getNodeNumber()));
+        nodeNumberLabel = new JTextField(String.valueOf(nodeModel.getNodeNumber()));
         nodeNumberLabel.setSize(25,25);
+        nodeNumberLabel.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                nodeModel.setNodeNumber(Integer.parseInt(nodeNumberLabel.getText()));
+            }
+        });
         add(nodeNumberLabel);
 
         fromEdgeViews = new ArrayList<>();
@@ -49,7 +67,7 @@ public class NodeView extends JPanel implements ISubscriber {
         return nodeModel;
     }
 
-    public JLabel getNodeNumberLabel() {
+    public JTextField getNodeNumberLabel() {
         return nodeNumberLabel;
     }
 

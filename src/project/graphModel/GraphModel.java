@@ -67,6 +67,13 @@ public class GraphModel implements IPublisher {
         this.graphNode = graphNode;
     }
 
+    public void addNode(){
+
+        NodeModel nodeModel = new NodeModel(this);
+        notifySubscribers(nodeModel, NotificationType.ADD);
+
+    }
+
     @Override
     public void addSubscriber(ISubscriber sub) {
         subscribers.add(sub);
@@ -78,7 +85,7 @@ public class GraphModel implements IPublisher {
     }
 
     @Override
-    public void notifySubscribers(Object notification, NotificationType notificationType) throws IOException {
+    public void notifySubscribers(Object notification, NotificationType notificationType) {
         for(ISubscriber subscriber : subscribers)
             subscriber.update(notification, notificationType);
     }

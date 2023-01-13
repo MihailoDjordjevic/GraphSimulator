@@ -10,8 +10,8 @@ public class GraohNodeMouseMotionListener implements MouseMotionListener {
     @Override
     public void mouseDragged(MouseEvent e) {
 
-        if (e.getSource() instanceof JLabel){
-            JLabel graphNode = (JLabel) e.getSource();
+        if (e.getSource() instanceof JTextField){
+            JTextField graphNode = (JTextField) e.getSource();
 
             int newX = e.getX() + graphNode.getX() - 20;
             int newY = e.getY() + graphNode.getY() - 6;

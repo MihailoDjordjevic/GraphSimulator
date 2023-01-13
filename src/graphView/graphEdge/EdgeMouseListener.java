@@ -11,7 +11,7 @@ public class EdgeMouseListener implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        Component sourceEdgeView = ((JLabel) e.getSource()).getParent();
+        Component sourceEdgeView = ((JTextField) e.getSource()).getParent();
 
         switch (ToolbarState.toolbarstate){
 

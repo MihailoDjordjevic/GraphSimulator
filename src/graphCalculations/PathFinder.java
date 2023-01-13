@@ -152,8 +152,8 @@ public class PathFinder {
 
         System.out.println("exploring " + paths.get(0).getTopNode());
 
-        doSleep();
         paths.get(0).getTopNode().getNodePane().setBorder(new LineBorder(Color.RED, 3));
+        doSleep();
 
         for (EdgeModel edgeModel : paths.get(0).getTopNode().getFromEdges()){
 
@@ -177,11 +177,17 @@ public class PathFinder {
                 paths.add(newPath);
 
                 edgeModel.getDestinationNode().getNodePane().setBorder(new LineBorder(Color.GREEN, 3));
+                SwingUtilities.updateComponentTreeUI(edgeModel.getDestinationNode().getNodePane());
 
             }
         }
 
         visitedNodes.add(paths.get(0).getTopNode());
+
+        doSleep();
+        for (AstarPath astarPath : paths){
+            astarPath.getTopNode().getNodePane().setBorder(null);
+        }
 
         paths.remove(0);
         paths.sort(Comparator.comparingInt(AstarPath::getPathCost));

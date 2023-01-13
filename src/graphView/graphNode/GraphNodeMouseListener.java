@@ -37,7 +37,11 @@ public class GraphNodeMouseListener implements MouseListener {
                     }
                 });
 
-                t.start();
+                try {
+                    t.start();
+                } catch (Exception ex) {
+
+                }
 
 
                 if (e.getClickCount() == 1 && e.getButton() == 1) return;
